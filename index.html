@@ -4,20 +4,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <!--CDN link for compressed CSS from Foundation-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/css/foundation.min.css" crossorigin="anonymous">
     <title>Movie Buff</title>
 </head>
 
 <body>
     <header>
-        <h1>Movie buff</h1>
+        <!--Grid layout using foundation-->
+        <div class="grid-container">
+            <div class="grid-x grid-padding-x">
+              <div class="cell small-12">
+                <h1 class="text-center">Movie buff</h1>
+              </div>
+            </div>
+            <!--end-->
     </header>
     
     <main>
-        <form id="search form">
-            <input type="text" id="searchInput" placeholder="Search for a movie...">
-            <button type="submit">Search</button>
-        </form>
+        <!--More layout for "search for a movie" area using foundation-->
+        <div class="grid-x grid-padding-x">
+            <div class="cell small-12">
+              <form>
+                <div class="grid-x grid-padding-x">
+                  <div class="small-12 cell">
+                    <label>Search for a Movie
+                      <input type="text" placeholder="Enter movie name">
+                    </label>
+                  </div>
+                  <div class="small-12 cell">
+                    <button type="submit" class="button">Search</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!--end-->
         <section id="movieInfo"></section>
         <div id="trailerContainer"></div>
     </main>
@@ -25,3 +48,5 @@
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
+
+
