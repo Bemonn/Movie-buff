@@ -1,5 +1,5 @@
-var movieInput = document.getElementById('searchInput')
-var movieFormEl = document.getElementById('search-form')
+var movieInput = document.getElementById('searchInput');
+var movieFormEl = document.getElementById('search-form');
 var movieInfo = document.getElementById('movieInfo');
 var trailerContainer = document.getElementById('trailerContainer');
 
