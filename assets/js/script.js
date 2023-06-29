@@ -3,24 +3,19 @@ var searchFormEl = document.getElementById('search-form');
 var movieInfo = document.getElementById('movieInfo');
 var trailerContainer = document.getElementById('trailerContainer');
 
-
 var formSubmitHandler = function (event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    var movieName = searchInput.value.trim();
-    console.log(movieName)
+  var movieName = searchInput.value.trim();
+  console.log(movieName)
 
-    if (movieName) {
-        getMovieApi(movieName);
-
-        searchInput.value = '';
-    } else {
-        alert('Please enter a movie name')
-    }
+  if (movieName) {
+      getMovieApi(movieName);
+      searchInput.value = '';
+  } else {
+      $('#errorModal').foundation('open');
+  }
 }
-
-
-
 
 function getMovieApi(title) {
     var requestMovieUrl = 'http://www.omdbapi.com/?t=' + title + '&apikey=2bd63a1d'
@@ -30,17 +25,12 @@ function getMovieApi(title) {
         return response.json();
     })
     .then(function (data) {
-        console.log(data)
+        console.log(data);
+        fetchTrailer(data.Title); // Call fetchTrailer function here.
     })
 }
 
-
-searchFormEl.addEventListener('submit', formSubmitHandler)
-
-
-
-// Fetch & display the movie trailer
-fetchTrailer(movieData.Title);
+searchFormEl.addEventListener('submit', formSubmitHandler);
 
 // Using fetch method to request trailer from youtube using API key
 async function fetchTrailer(movieTitle) {
@@ -60,3 +50,6 @@ async function fetchTrailer(movieTitle) {
     console.log('Error fetching trailer data:', error);
   }
 }
+
+//Initialises Foundation (should be at the end of any other JavaScript code)
+$(document).foundation();
