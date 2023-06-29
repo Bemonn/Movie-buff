@@ -1,17 +1,17 @@
-var movieInput = document.getElementById('searchInput')
-var movieFormEl = document.getElementById('search-form')
+var searchInput = document.getElementById('searchInput')
+var searchFormEl = document.getElementById('search-form')
 
 
 var formSubmitHandler = function (event) {
     event.preventDefault();
 
-    var movieName = movieInput.value.trim();
+    var movieName = searchInput.value.trim();
     console.log(movieName)
 
     if (movieName) {
         getMovieApi(movieName);
 
-        movieInput.value = '';
+        searchInput.value = '';
     } else {
         alert('Please enter a movie name')
     }
@@ -33,5 +33,5 @@ function getMovieApi(title) {
 }
 
 
-movieFormEl.addEventListener('submit', formSubmitHandler)
+searchFormEl.addEventListener('submit', formSubmitHandler)
 
