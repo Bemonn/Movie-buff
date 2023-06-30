@@ -1,0 +1,52 @@
+/*search bar, text and button styling and layout*/
+#search-form {
+    text-align: center;
+}
+
+#searchInput {
+    display: block;
+}
+
+.button {
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+    /*modal popup colour and styling*/
+.reveal {
+    background-color: #000000;
+    border-radius: 15px; /*Rounded corners*/
+}
+
+/*The header within the modal*/
+.reveal h1 {
+    font-size: 2em;
+    color: #dc3545;
+}
+
+/*The paragraph within the modal*/
+.reveal p {
+    font-size: 1.2em;
+    color: #dc3545;
+}
+
+/*The close button*/
+.reveal .close-button {
+    top: 10px;
+    right: 10px;
+    color: #919191;
+}
+
+.reveal .close-button:hover {
+    color: #dc3545;
+}
+    /*modal popup colour and styling END*/
+
+@media screen and (max-width: 640px) {
+    .button {
+        margin-top: 10px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
