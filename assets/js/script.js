@@ -25,8 +25,24 @@ function getMovieApi(title) {
         return response.json();
     })
     .then(function (data) {
+        //modal if movie doesn't exist 
+        if (data.Error) {
+            $('#inccorectInputModal').foundation('open');
+            return
+        } else {
         console.log(data);
+        //variable to dislay the movie info
+        var movieTitle = data.Title
+        var movieDate = data.Released
+        var movieRating = data.Rated
+        var movieRunTime = data.Runtime
+        var moviePlot = data.Plot
+        var moviePoster = data.Poster
+
+        renderMovieInfo(movieTitle, movieDate, movieRating, movieRunTime, moviePlot, moviePoster)
+        
         fetchTrailer(data.Title); // Call fetchTrailer function here.
+    }
     })
 }
 
@@ -50,6 +66,47 @@ async function fetchTrailer(movieTitle) {
     console.log('Error fetching trailer data:', error);
   }
 }
+
+// render movie information. Title, date, rating, runtime, description & Poster 
+// description added as a card
+function renderMovieInfo(title, date, rating, runtime, moviePlot, poster) {
+    
+    //tried clearing the div first, but doesn't render the content 
+    // movieInfo = ''
+
+    var titleEl = document.createElement('h2')
+    titleEl.innerHTML = title 
+    movieInfo.append(titleEl)
+
+    var movieDetailsEl = document.createElement('p')
+    movieDetailsEl.innerHTML = date + ", " + rating + ", " + runtime;
+    titleEl.append(movieDetailsEl)
+
+    var movieDesciptionCard = document.createElement('div')
+
+    var movieDescriptionBody = document.createElement('div')
+
+    movieDesciptionCard.append(movieDescriptionBody)
+
+    var descriptionTitle = document.createElement('h3')
+    descriptionTitle.textContent = "Movie Description"
+
+    var descriptionContentEl = document.createElement('p')
+    descriptionContentEl.innerHTML = moviePlot
+
+    movieDescriptionBody.append(descriptionContentEl)
+
+    movieDetailsEl.append(movieDesciptionCard)
+
+    var moviePosterEl = document.createElement('img')
+
+    moviePosterEl.setAttribute('src', poster)
+
+    trailerContainer.appendChild(moviePosterEl)
+
+}
+
+
 
 //Initialises Foundation (should be at the end of any other JavaScript code)
 $(document).foundation();
