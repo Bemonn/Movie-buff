@@ -10,11 +10,17 @@ var formSubmitHandler = function (event) {
   console.log(movieName)
 
   if (movieName) {
+    clearMovieInfo(); // clears previous movie info
       getMovieApi(movieName);
       searchInput.value = '';
   } else {
       $('#errorModal').foundation('open');
   }
+};
+
+function clearMovieInfo() {
+    movieInfo.innerHTML = '';
+    trailerContainer.innerHTML = '';
 }
 
 function getMovieApi(title) {
@@ -39,7 +45,7 @@ function getMovieApi(title) {
         var moviePlot = data.Plot
         var moviePoster = data.Poster
 
-        renderMovieInfo(movieTitle, movieDate, movieRating, movieRunTime, moviePlot, moviePoster)
+        renderMovieInfo(movieTitle, movieDate, movieRating, movieRunTime, moviePlot, moviePoster);
         
         fetchTrailer(data.Title); // Call fetchTrailer function here.
     }
@@ -49,23 +55,39 @@ function getMovieApi(title) {
 searchFormEl.addEventListener('submit', formSubmitHandler);
 
 // Using fetch method to request trailer from youtube using API key
-async function fetchTrailer(movieTitle) {
-  var apiKey = 'AIzaSyBLYYwlY0FawpIOHpAwRfHhh9nUa';
-  var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(movieTitle + 'official trailer')}&maxResults=1&key=${apiKey}`;
-
-  try {
-    var response = await fetch(apiUrl);
-    var data = await response.json();
-    if (data.items && data.items.length > 0) {
-      var videoId = data.items[0].id.videoId;
-      showTrailer(videoId);
-    } else {
-      console.log('Trailer not found');
-    }
-  } catch (error) {
-    console.log('Error fetching trailer data:', error);
+function fetchTrailer(movieTitle) {
+    var apiKey = 'AIzaSyBLYYwlY0FawpIOHpAwRfHhh9nUa-xpIXc';
+    var apiUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet' +
+      '&q=' + encodeURIComponent(movieTitle + ' official trailer') +
+      '&maxResults=1' +
+      '&key=' + apiKey;
+  
+    fetch(apiUrl)
+      .then(function(response) {
+        if (!response.ok) {
+          throw new Error('Error fetching trailer data: ' + response.status);
+        }
+        return response.json();
+      })
+      .then(function(data) {
+        if (data.items && data.items.length > 0) {
+          var videoId = data.items[0].id.videoId;
+          showTrailer(videoId);
+        } else {
+          console.error('Trailer not found');
+        }
+      })
+      .catch(function(error) {
+        console.error('Error fetching trailer data:', error);
+      });
   }
-}
+
+  // Display movie trailer, using iframe to embed content from youtube
+  function showTrailer(videoId) {
+    var trailerContainer = document.getElementById('trailerContainer');
+    trailerContainer.innerHTML = `<iframe width='560' height='315' src='https://youtube.com/embed/${videoId}' frameborder='0' allowfullscreen></iframe>`;
+  }
+
 
 // render movie information. Title, date, rating, runtime, description & Poster 
 // description added as a card
@@ -74,35 +96,33 @@ function renderMovieInfo(title, date, rating, runtime, moviePlot, poster) {
     //tried clearing the div first, but doesn't render the content 
     // movieInfo = ''
 
+   var moviePosterEl = document.createElement('img');
+    moviePosterEl.setAttribute('src', poster);
+    movieInfo.append(moviePosterEl);
+
     var titleEl = document.createElement('h2')
     titleEl.innerHTML = title 
-    movieInfo.append(titleEl)
+    movieInfo.appendChild(titleEl);
 
-    var movieDetailsEl = document.createElement('p')
+    var movieDetailsEl = document.createElement('p');
     movieDetailsEl.innerHTML = date + ", " + rating + ", " + runtime;
-    titleEl.append(movieDetailsEl)
+    titleEl.append(movieDetailsEl);
 
-    var movieDesciptionCard = document.createElement('div')
+    var movieDesciptionCard = document.createElement('div');
 
-    var movieDescriptionBody = document.createElement('div')
+    var movieDescriptionBody = document.createElement('div');
+    
+    movieDesciptionCard.append(movieDescriptionBody);
 
-    movieDesciptionCard.append(movieDescriptionBody)
+    var descriptionTitle = document.createElement('h3');
+    descriptionTitle.textContent = 'Movie Description';
 
-    var descriptionTitle = document.createElement('h3')
-    descriptionTitle.textContent = "Movie Description"
+    var descriptionContentEl = document.createElement('p');
+    descriptionContentEl.innerHTML = moviePlot;
+    
+    movieDescriptionBody.append(descriptionContentEl);
 
-    var descriptionContentEl = document.createElement('p')
-    descriptionContentEl.innerHTML = moviePlot
-
-    movieDescriptionBody.append(descriptionContentEl)
-
-    movieDetailsEl.append(movieDesciptionCard)
-
-    var moviePosterEl = document.createElement('img')
-
-    moviePosterEl.setAttribute('src', poster)
-
-    trailerContainer.appendChild(moviePosterEl)
+    movieDetailsEl.append(movieDesciptionCard);
 
 }
 
