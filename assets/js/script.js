@@ -2,6 +2,7 @@ var searchInput = document.getElementById('searchInput');
 var searchFormEl = document.getElementById('search-form');
 var movieInfo = document.getElementById('movieInfo');
 var trailerContainer = document.getElementById('trailerContainer');
+var movieCastEl = document.getElementById('cast-list')
 
 var formSubmitHandler = function (event) {
   event.preventDefault();
@@ -44,6 +45,35 @@ function getMovieApi(title) {
         var movieRunTime = data.Runtime
         var moviePlot = data.Plot
         var moviePoster = data.Poster
+        
+        //Get actors name and split them to create array
+        var movieActors = data.Actors
+        console.log(movieActors)
+        var cast = movieActors.split(',')
+        console.log(cast)
+
+        // Wiki API to get Actors img
+        // for loop to run through the number of actors. Get their img source and thier name as per the new API
+        for (var i = 0; i < cast.length; i++) { 
+            var movieCastUrl = 'https://en.wikipedia.org/api/rest_v1/page/summary/' + cast[i]
+
+            fetch(movieCastUrl)
+            .then(function (response) {
+                if (!response.ok) {
+                    return;
+                }
+                return response.json();
+            })
+            .then(function (dataCast) {
+                console.log(dataCast)
+                var imageSource = dataCast.thumbnail.source
+                var nameOfActor = dataCast.title
+                console.log(nameOfActor)
+                renderActorImage(imageSource, nameOfActor)
+
+            })
+
+        }
 
         renderMovieInfo(movieTitle, movieDate, movieRating, movieRunTime, moviePlot, moviePoster);
         
@@ -126,7 +156,24 @@ function renderMovieInfo(title, date, rating, runtime, moviePlot, poster) {
 
 }
 
+//Function to render actors names and thumbnails 
+function renderActorImage(thumbnail, nameOfActor) {
+    var actorImageCard = document.createElement('div');
 
+    var actorImgBody = document.createElement('div');
+
+    actorImageCard.append(actorImgBody);
+
+    var actorsImage = document.createElement('img');
+    actorsImage.setAttribute('src', thumbnail)
+    
+    var actorsName = document.createElement('h2')
+    actorsName.textContent = nameOfActor 
+
+    actorImgBody.append(actorsImage, actorsName)
+
+    movieCastEl.append(actorImageCard)
+}
 
 //Initialises Foundation (should be at the end of any other JavaScript code)
 $(document).foundation();
