@@ -17,67 +17,51 @@
 
 <body>
     <header id="header">
-        <div id="background-image"></div>
-        <!--Grid layout using foundation-->
         <div class="grid-container">
-            <div class="grid-x grid-padding-x">
-                <div class="cell small-12">
-                    <h1 class="text-center">Movie buff</h1>
+          <div class="grid-x grid-padding-x align-center align-middle" style="height: 100vh;">
+            <div class="cell small-12">
+              <h1>Movie buff</h1>
+              <div class="grid-x grid-padding-x align-center align-middle">
+                <div class="cell small-12 medium-6">
+                  <form id="search-form" class="text-center">
+                    <label for="searchInput">Search for a Movie</label>
+                    <div class="input-group">
+                      <input type="text" id="searchInput" placeholder="Enter movie name">
+                      <button type="submit" class="button">Search</button>
+                    </div>
+                  </form>
                 </div>
+              </div>
             </div>
-            <!--end-->
-
-            <!--More layout for "search for a movie" area using foundation-->
-            <div class="grid-x grid-padding-x align-middle">
-                <div class="cell small-12">
-                    <form id="search-form">
-                        <div class="grid-x grid-padding-x align-center">
-                            <div class="cell small-12 text-center">
-                                <label for="searchInput">Search for a Movie</label>
-                            </div>
-                            <div class="cell small-12 medium-4">
-                                <input type="text" id="searchInput" placeholder="Enter movie name">
-                            </div>
-                            <div class="cell small-12 text-center">
-                                <button type="submit" class="button">Search</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <!-- Modal popup for not typing anything into movie search bar -->
-            <div class="reveal" id="errorModal" data-reveal>
-                <h1>Error</h1>
-                <p>You need to type in a movie name.</p>
-                <button class="close-button" data-close aria-label="Close modal" type="button">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <!-- Modal popup for typing a movie that doesn't exist -->
-            <div class="reveal" id="inccorectInputModal" data-reveal>
-                <h1>Error</h1>
-                <p>Movie doesn't exist. Sorry <i class="fa-solid fa-face-sad-tear"></i> </p>
-                <button class="close-button" data-close aria-label="Close modal" type="button">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <!-- <section id="movieInfo"></section>
-            <div id="trailerContainer"></div>
-            <div id="cast-list"></div> -->
-    </header>
-
+          </div>
+        </div>
+      
+        <!-- Modal popup for not typing anything into movie search bar -->
+        <div class="reveal" id="errorModal" data-reveal>
+          <h1>Error</h1>
+          <p>You need to type in a movie name.</p>
+          <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <!-- Modal popup for typing a movie that doesn't exist -->
+        <div class="reveal" id="inccorectInputModal" data-reveal>
+          <h1>Error</h1>
+          <p>Movie doesn't exist. Sorry <i class="fa-solid fa-face-sad-tear"></i> </p>
+          <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </header>
+      
     <main>
         <section id="movieInfo"></section>
         <div id="trailerContainer"></div>
         <div id="cast-list"></div>
     </main>
-    <!-- <section id="movieInfo"></section>
-    <div id="trailerContainer"></div>
-    <div id="cast-list"></div> -->
 
-<!--jquery link-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--jquery link-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script>
         $(document).foundation();
