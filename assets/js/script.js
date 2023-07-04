@@ -151,33 +151,39 @@ function showTrailer(videoId) {
 }
 
 function renderMovieInfo(title, date, rating, runtime, moviePlot, poster) {
-  var moviePosterEl = document.createElement('img');
-  moviePosterEl.setAttribute('src', poster);
-  movieInfo.append(moviePosterEl);
+    // Create a new Foundation modal
+    var modal = new Foundation.Reveal($('#movieInfoModal'));
 
-  var titleEl = document.createElement('h2');
-  titleEl.innerHTML = title;
-  movieInfo.appendChild(titleEl);
+    var moviePosterEl = document.createElement('img');
+    moviePosterEl.setAttribute('src', poster);
 
-  var movieDetailsEl = document.createElement('p');
-  movieDetailsEl.innerHTML = date + ', ' + rating + ', ' + runtime;
-  titleEl.append(movieDetailsEl);
+    var titleEl = document.createElement('h2')
+    titleEl.innerHTML = title 
 
-  var movieDesciptionCard = document.createElement('div');
+    var movieDetailsEl = document.createElement('p');
+    movieDetailsEl.innerHTML = date + ", " + rating + ", " + runtime;
 
-  var movieDescriptionBody = document.createElement('div');
+    titleEl.append(movieDetailsEl);
 
-  movieDesciptionCard.append(movieDescriptionBody);
+    var movieDesciptionCard = document.createElement('div');
 
-  var descriptionTitle = document.createElement('h3');
-  descriptionTitle.textContent = 'Movie Description';
+    var movieDescriptionBody = document.createElement('div');
+    
+    movieDesciptionCard.append(movieDescriptionBody);
 
-  var descriptionContentEl = document.createElement('p');
-  descriptionContentEl.innerHTML = moviePlot;
+    var descriptionTitle = document.createElement('h3');
+    descriptionTitle.textContent = 'Movie Description';
 
-  movieDescriptionBody.append(descriptionContentEl);
+    var descriptionContentEl = document.createElement('p');
+    descriptionContentEl.innerHTML = moviePlot;
+    
+    movieDescriptionBody.append(descriptionContentEl);
 
-  movieDetailsEl.append(movieDesciptionCard);
+    movieDetailsEl.append(movieDesciptionCard);
+
+    $('#movieInfoModal .modal-content').empty().append(moviePosterEl, titleEl, movieDetailsEl);
+
+    modal.open();
 }
 
 function renderActorImages(castImages) {
