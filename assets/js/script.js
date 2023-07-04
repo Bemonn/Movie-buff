@@ -210,10 +210,49 @@ window.addEventListener('load', function () {
       savedMovieData.moviePlot,
       savedMovieData.moviePoster
     );
-    renderActorImages(savedMovieData.cast);
+    renderCastImgLocalStorage(savedMovieData.cast);
     showTrailer(savedMovieData.videoId);
   }
 });
+
+function renderCastImgLocalStorage(actorImg) { 
+
+  var castPromises = actorImg.map(function (actor) {
+    var movieCastUrl = 'https://en.wikipedia.org/api/rest_v1/page/summary/' + actor;
+
+    return fetch(movieCastUrl)
+      .then(function (response) {
+        if (!response.ok) {
+          return;
+        }
+        return response.json();
+      });
+  });
+
+  Promise.all(castPromises)
+    .then(function (castData) {
+      var castImages = castData.map(function (dataCast) {
+        console.log(dataCast);
+        if (dataCast) {
+          var imageSource = dataCast.thumbnail.source;
+          var nameOfActor = dataCast.title;
+          console.log(nameOfActor);
+          return {
+            imageSource: imageSource,
+            nameOfActor: nameOfActor,
+          };
+        }
+      });
+      renderActorImages(castImages);
+    })
+    .catch(function (error) {
+      console.error('Error fetching cast data:', error);
+    });
+
+}
+
+
+
 
 searchFormEl.addEventListener('submit', formSubmitHandler);
 
