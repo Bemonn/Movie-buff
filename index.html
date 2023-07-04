@@ -11,6 +11,10 @@
     <!-- Font Awesome added  -->
     <script src="https://kit.fontawesome.com/d4b46c5fe6.js" crossorigin="anonymous"></script>
     <!--custom css stylesheet-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Movie Buff</title>
 </head>
@@ -18,16 +22,15 @@
 <body>
     <header id="header">
         <div class="grid-container">
-          <div class="grid-x grid-padding-x align-center align-middle" style="height: 100vh;">
+          <div class="grid-x grid-padding-x align-center align-middle" style="height: 100vh" font-weight:700>
             <div class="cell small-12">
-              <h1>Movie buff</h1>
+              <h1>Movie Buff</h1>
               <div class="grid-x grid-padding-x align-center align-middle">
-                <div class="cell small-12 medium-6">
+                <div class="cell small-12 medium-16">
                   <form id="search-form" class="text-center">
-                    <label for="searchInput">Search for a Movie</label>
                     <div class="input-group">
                       <input type="text" id="searchInput" placeholder="Enter movie name">
-                      <button type="submit" class="button">Search</button>
+                      <button type="submit" id="button">Cast About</button>
                     </div>
                   </form>
                 </div>
@@ -76,8 +79,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script>
-        $(document).foundation();
-
         $('#search-form').on('submit', function (e) {
             e.preventDefault();
             var input = $('input[type="text"]').val();

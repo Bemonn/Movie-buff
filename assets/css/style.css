@@ -8,8 +8,12 @@
 }
 
 #header h1 {
-    font-size: 60px;
+    font-size: 65px;
     margin-top: 20px;
+    text-shadow: 2px 4px 4px rgba(16, 36, 136, 0.6);
+    font-family: 'Anton', sans-serif;
+    color: rgb(10, 56, 73);
+
 }
 
 #header::before {
@@ -42,24 +46,26 @@
     margin-right: 10px;
 }
 
-
 #searchInput {
     width: 400px;
     margin-right: 10px;
 }
 
-/* #searchInput {
-    width: 300px;
+/* styled cas about button */
+#button {
     display: block;
     margin: 0 auto;
-    padding: 10px;
-    box-sizing: border-box;
-} */
-
-.button {
-    display: block;
-    margin: 0 auto;
-    margin-top: 10px;
+    margin-bottom: 15px;
+    background-color: rgb(20, 107, 170);
+    cursor: pointer;
+    padding: 2.5%;
+    width: 25%;
+    border-radius: 45%;
+    color: white;
+    font-size: 16px;
+}
+#button:hover {
+    color: rgb(0, 9, 11);
 }
 
 /*modal popup colour and styling*/
@@ -93,37 +99,6 @@
 }
 
 /*modal popup colour and styling END*/
-
-#movieInfoModal {
-    background-color: #000000;
-    border-radius: 15px;
-    color: #dc3545;
-}
-
-#modalContent {
-    max-height: 500px;
-    overflow-y: auto; /* this will add a vertical scrollbar if the content exceeds the max-height */
-}
-
-#movieInfoModal h1, #movieInfoModal h2 {
-    font-size: 2em;
-    color: #dc3545;
-}
-
-#movieInfoModal p {
-    font-size: 1.2em;
-    color: #dc3545;
-}
-
-#movieInfoModal .close-button {
-    top: 10px;
-    right: 10px;
-    color: #919191;
-}
-
-#movieInfoModal .close-button:hover {
-    color: #dc3545;
-}
 
 @media screen and (max-width: 640px) {
     .button {
