@@ -194,9 +194,7 @@ function renderMovieInfo(title, date, rating, runtime, moviePlot, poster) {
 
     var descriptionContentEl = document.createElement('p');
     descriptionContentEl.innerHTML = moviePlot;
-    
-    // movieDescriptionBody.append(descriptionContentEl);
-
+  
     movieInfo.append(moviePosterEl, titleEl, descriptionContentEl);
 
     // $('#movieInfoModal .modal-content').empty().append(moviePosterEl, titleEl, movieDetailsEl);
