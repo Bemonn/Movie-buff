@@ -94,6 +94,37 @@
 
 /*modal popup colour and styling END*/
 
+#movieInfoModal {
+    background-color: #000000;
+    border-radius: 15px;
+    color: #dc3545;
+}
+
+#modalContent {
+    max-height: 500px;
+    overflow-y: auto; /* this will add a vertical scrollbar if the content exceeds the max-height */
+}
+
+#movieInfoModal h1, #movieInfoModal h2 {
+    font-size: 2em;
+    color: #dc3545;
+}
+
+#movieInfoModal p {
+    font-size: 1.2em;
+    color: #dc3545;
+}
+
+#movieInfoModal .close-button {
+    top: 10px;
+    right: 10px;
+    color: #919191;
+}
+
+#movieInfoModal .close-button:hover {
+    color: #dc3545;
+}
+
 @media screen and (max-width: 640px) {
     .button {
         margin-top: 10px;
