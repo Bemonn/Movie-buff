@@ -4,6 +4,13 @@ var movieInfo = document.getElementById('movieInfo');
 var trailerContainer = document.getElementById('trailerContainer');
 var movieCastEl = document.getElementById('cast-list');
 
+function init() {
+  clearMovieInfo()
+  // localStorage.removeItem("movieData")
+}
+
+init ()
+
 var formSubmitHandler = function (event) {
   event.preventDefault();
 
@@ -12,6 +19,7 @@ var formSubmitHandler = function (event) {
 
   if (movieName) {
     clearMovieInfo(); // clears previous movie info
+
     getMovieApi(movieName);
     searchInput.value = '';
   } else {
@@ -20,6 +28,7 @@ var formSubmitHandler = function (event) {
 };
 
 function clearMovieInfo() {
+  // $('#modalContent').empty
   movieInfo.innerHTML = '';
   trailerContainer.innerHTML = '';
   movieCastEl.innerHTML = ''; // Clear the cast list
@@ -68,6 +77,7 @@ function getMovieApi(title) {
           return fetch(movieCastUrl)
             .then(function (response) {
               if (!response.ok) {
+                console.log("'Error fetching cast data:', error")
                 return;
               }
               return response.json();
@@ -92,8 +102,13 @@ function getMovieApi(title) {
           })
           .catch(function (error) {
             console.error('Error fetching cast data:', error);
+            clearMovieInfo()
+            localStorage.removeItem("movieData")
+            $('#inccorectInputModal').foundation('open')
           });
 
+          //add empty method ####
+        // $('#movieInfo').empty()
         renderMovieInfo(movieTitle, movieDate, movieRating, movieRunTime, moviePlot, moviePoster);
         fetchTrailer(data.Title);
 
@@ -113,7 +128,7 @@ function getMovieApi(title) {
 }
 
 function fetchTrailer(movieTitle) {
-  var apiKey = 'AIzaSyBLYYwlY0FawpIOHpAwRfHhh9nUa-xpIXc';
+  var apiKey = 'AIzaSyDA9YYhJjULBoucsmFpmakO9g9PbIXzul';
   var apiUrl =
     'https://www.googleapis.com/youtube/v3/search?part=snippet' +
     '&q=' +
@@ -132,6 +147,7 @@ function fetchTrailer(movieTitle) {
     .then(function (data) {
       if (data.items && data.items.length > 0) {
         var videoId = data.items[0].id.videoId;
+
         showTrailer(videoId);
 
         var movieData = getMovieData();
@@ -152,9 +168,11 @@ function showTrailer(videoId) {
 
 function renderMovieInfo(title, date, rating, runtime, moviePlot, poster) {
     // Create a new Foundation modal
+    
     var modal = new Foundation.Reveal($('#movieInfoModal'));
 
     var moviePosterEl = document.createElement('img');
+    moviePosterEl.innerHTML = ''
     moviePosterEl.setAttribute('src', poster);
 
     var titleEl = document.createElement('h2')
@@ -176,12 +194,10 @@ function renderMovieInfo(title, date, rating, runtime, moviePlot, poster) {
 
     var descriptionContentEl = document.createElement('p');
     descriptionContentEl.innerHTML = moviePlot;
-    
-    movieDescriptionBody.append(descriptionContentEl);
+  
+    movieInfo.append(moviePosterEl, titleEl, descriptionContentEl);
 
-    movieDetailsEl.append(movieDesciptionCard);
-
-    $('#movieInfoModal .modal-content').empty().append(moviePosterEl, titleEl, movieDetailsEl);
+    // $('#movieInfoModal .modal-content').empty().append(moviePosterEl, titleEl, movieDetailsEl);
 
     modal.open();
 }
