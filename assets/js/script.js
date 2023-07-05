@@ -95,6 +95,7 @@ function getMovieApi(title) {
                 return {
                   imageSource: imageSource,
                   nameOfActor: nameOfActor,
+                  
                 };
               }
             });
@@ -110,8 +111,10 @@ function getMovieApi(title) {
           //add empty method ####
         // $('#movieInfo').empty()
         renderMovieInfo(movieTitle, movieDate, movieRating, movieRunTime, moviePlot, moviePoster);
-        fetchTrailer(data.Title);
+        
 
+        fetchTrailer(data.Title);
+        
         // Save movie data in local storage
         var movieData = {
           movieTitle: movieTitle,
@@ -128,10 +131,11 @@ function getMovieApi(title) {
 }
 
 function fetchTrailer(movieTitle) {
-  var apiKey = 'AIzaSyDA9YYhJjULBoucsmFpmakO9g9PbIXzul';
+  var apiKey = 'AIzaSyDA9YYhJjULBoucsmFpmakO9g9PbIXzulQ';
   var apiUrl =
     'https://www.googleapis.com/youtube/v3/search?part=snippet' +
     '&q=' +
+    
     encodeURIComponent(movieTitle + ' official trailer') +
     '&maxResults=1' +
     '&key=' +
@@ -145,9 +149,10 @@ function fetchTrailer(movieTitle) {
       return response.json();
     })
     .then(function (data) {
+      console.log(data)
       if (data.items && data.items.length > 0) {
         var videoId = data.items[0].id.videoId;
-
+        console.log(videoId)
         showTrailer(videoId);
 
         var movieData = getMovieData();
@@ -162,9 +167,7 @@ function fetchTrailer(movieTitle) {
     });
 }
 
-function showTrailer(videoId) {
-  trailerContainer.innerHTML = `<iframe width='560' height='315' src='https://youtube.com/embed/${videoId}' frameborder='0' allowfullscreen></iframe>`;
-}
+
 
 function renderMovieInfo(title, date, rating, runtime, moviePlot, poster) {
     // Create a new Foundation modal
@@ -202,15 +205,22 @@ function renderMovieInfo(title, date, rating, runtime, moviePlot, poster) {
     modal.open();
 }
 
+function showTrailer(videoId) {
+  movieInfo.append(trailerContainer);
+  trailerContainer.innerHTML = `<iframe width='560' height='315' src='https://youtube.com/embed/${videoId}' frameborder='0' allowfullscreen></iframe>`;
+}
+
 function renderActorImages(castImages) {
   castImages.forEach(function (castImage) {
     var actorImageCard = document.createElement('div');
+    actorImageCard.classList.add('column')
     var actorImgBody = document.createElement('div');
 
     actorImageCard.append(actorImgBody);
 
     var actorsImage = document.createElement('img');
     actorsImage.setAttribute('src', castImage.imageSource);
+    actorsImage.classList.add('img-height')
 
     var actorsName = document.createElement('h2');
     actorsName.textContent = castImage.nameOfActor;
@@ -233,6 +243,7 @@ window.addEventListener('load', function () {
       savedMovieData.moviePoster
     );
     renderCastImgLocalStorage(savedMovieData.cast);
+    console.log(savedMovieData.videoId)
     showTrailer(savedMovieData.videoId);
   }
 });

@@ -98,6 +98,11 @@
     color: #dc3545;
 }
 
+.img-height {
+    height: 253px;
+    width: 253px;
+}
+
 /*modal popup colour and styling END*/
 
 @media screen and (max-width: 640px) {
