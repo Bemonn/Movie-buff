@@ -198,7 +198,7 @@ function renderMovieInfo(title, date, rating, runtime, moviePlot, poster) {
     var descriptionContentEl = document.createElement('p');
     descriptionContentEl.innerHTML = moviePlot;
   
-    movieInfo.append(moviePosterEl, titleEl, descriptionContentEl);
+    movieInfo.append(titleEl, moviePosterEl, titleEl, descriptionContentEl);
 
     // $('#movieInfoModal .modal-content').empty().append(moviePosterEl, titleEl, movieDetailsEl);
 
@@ -283,9 +283,6 @@ function renderCastImgLocalStorage(actorImg) {
     });
 
 }
-
-
-
 
 searchFormEl.addEventListener('submit', formSubmitHandler);
 

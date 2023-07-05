@@ -10,10 +10,9 @@
 #header h1 {
     font-size: 65px;
     margin-top: 20px;
-    text-shadow: 2px 4px 4px rgba(16, 36, 136, 0.6);
+    text-shadow: 2px 4px 4px #ffff;
     font-family: 'Anton', sans-serif;
-    color: rgb(10, 56, 73);
-
+    color: #112e51;
 }
 
 #header::before {
@@ -56,7 +55,7 @@
     display: block;
     margin: 0 auto;
     margin-bottom: 15px;
-    background-color: rgb(20, 107, 170);
+    background-color: #112e51;
     cursor: pointer;
     padding: 2.5%;
     width: 25%;
@@ -64,13 +63,14 @@
     color: white;
     font-size: 16px;
 }
+
 #button:hover {
-    color: rgb(0, 9, 11);
+    background-color: #205493;
 }
 
 /*modal popup colour and styling*/
 .reveal {
-    background-color: #000000;
+    background-color: #112e51;
     border-radius: 15px;
     /*Rounded corners*/
 }
@@ -78,24 +78,31 @@
 /*The header within the modal*/
 .reveal h1 {
     font-size: 2em;
-    color: #dc3545;
+    color: #ffff;
 }
 
 /*The paragraph within the modal*/
 .reveal p {
     font-size: 1.2em;
-    color: #dc3545;
+    color: #ffff
 }
 
 /*The close button*/
 .reveal .close-button {
-    top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     right: 10px;
-    color: #919191;
+    color: #205493;
+    background-color: #ffff;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
 }
 
 .reveal .close-button:hover {
-    color: #dc3545;
+    color: #ffff;
+    background-color: #205493;
 }
 
 .img-height {
@@ -106,7 +113,7 @@
 /*modal popup colour and styling END*/
 
 @media screen and (max-width: 640px) {
-    .button {
+    #button {
         margin-top: 10px;
         margin-right: auto;
         margin-left: auto;
