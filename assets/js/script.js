@@ -95,6 +95,7 @@ function getMovieApi(title) {
                 return {
                   imageSource: imageSource,
                   nameOfActor: nameOfActor,
+                  
                 };
               }
             });
@@ -212,12 +213,14 @@ function showTrailer(videoId) {
 function renderActorImages(castImages) {
   castImages.forEach(function (castImage) {
     var actorImageCard = document.createElement('div');
+    actorImageCard.classList.add('column')
     var actorImgBody = document.createElement('div');
 
     actorImageCard.append(actorImgBody);
 
     var actorsImage = document.createElement('img');
     actorsImage.setAttribute('src', castImage.imageSource);
+    actorsImage.classList.add('img-height')
 
     var actorsName = document.createElement('h2');
     actorsName.textContent = castImage.nameOfActor;
