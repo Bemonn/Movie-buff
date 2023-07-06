@@ -46,7 +46,7 @@ function getMovieData() {
 }
 
 function getMovieApi(title) {
-  var requestMovieUrl = 'http://www.omdbapi.com/?t=' + title + '&apikey=2bd63a1d';
+  var requestMovieUrl = 'https://www.omdbapi.com/?t=' + title + '&apikey=2bd63a1d';
 
   fetch(requestMovieUrl)
     .then(function (response) {
