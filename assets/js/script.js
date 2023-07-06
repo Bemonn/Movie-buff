@@ -223,6 +223,7 @@ function renderActorImages(castImages) {
     actorsImage.classList.add('img-height')
 
     var actorsName = document.createElement('h2');
+    actorsName.classList.add('actors-names')
     actorsName.textContent = castImage.nameOfActor;
 
     actorImgBody.append(actorsImage, actorsName);
