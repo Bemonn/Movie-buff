@@ -110,6 +110,12 @@
     width: 253px;
 }
 
+
+h2 {
+    font-size: 2em;
+    color: #ffff;
+}
+
 .actors-names {
     font-size: 1.5em;
     text-align: center;
@@ -117,9 +123,12 @@
     
 }
 
-h2 {
-    color: #ffff;
+.no-trailer {
+    color: red;
+    text-align: center;
 }
+
+
 
 /*modal popup colour and styling END*/
 
