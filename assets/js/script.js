@@ -102,7 +102,7 @@ function getMovieApi(title) {
 
               //conditional "if" statement. If the actor has no image src. A placeholder is used instead of casuing an error with rendering
               if (!dataCast.thumbnail) {
-                var imageSource = 'http://placehold.it/200'; // placeholder location
+                var imageSource = 'assets/image/Shutterstock_1857840451.png'; // placeholder location
                 var nameOfActor = dataCast.title // the actor's name is still extracted from the data 
 
                 return {
@@ -269,7 +269,6 @@ function renderActorImages(castImages) {
   });
 }
 
-
 // event listener for when the page loads 
 window.addEventListener('load', function () {
   var savedMovieData = getMovieData(); // gets local storage 
@@ -316,7 +315,7 @@ function renderCastImgLocalStorage(actorImg) {
         
          //conditional "if" statement. If the actor has no image src. A placeholder is used instead of casuing an error with rendering
         if (!dataCast.thumbnail) {
-          var imageSource = 'http://placehold.it/200'; //Placeholder image
+          var imageSource = 'assets/image/Shutterstock_1857840451.png'; //Placeholder image
           var nameOfActor = dataCast.title
 
           return {
@@ -350,3 +349,4 @@ searchFormEl.addEventListener('submit', formSubmitHandler);
 
 //link foundation CSS
 $(document).foundation();
+
