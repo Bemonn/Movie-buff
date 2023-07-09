@@ -219,6 +219,7 @@ function renderMovieInfo(title, date, rating, runtime, moviePlot, poster) {
     var moviePosterEl = document.createElement('img'); // imgage element created for poster 
     moviePosterEl.innerHTML = '' //element first cleared to ensure no previous poster is displayed 
     moviePosterEl.setAttribute('src', poster); // location of poster set 
+    moviePosterEl.setAttribute('alt', title)
 
     var titleEl = document.createElement('h2') // h2 element created to display Movie Title 
     titleEl.innerHTML = title //Title from OMDb API 
@@ -257,6 +258,7 @@ function renderActorImages(castImages) {
 
     var actorsImage = document.createElement('img'); //img element created for images
     actorsImage.setAttribute('src', castImage.imageSource); //location of thumbnails from castImages Object. Object contains the image src and actors name 
+    actorsImage.setAttribute('alt', castImage.nameOfActor)
     actorsImage.classList.add('img-height') // CSS styling to get images the same size
 
     var actorsName = document.createElement('h2'); // h2 element created to display actor's names 
