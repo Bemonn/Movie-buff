@@ -14,9 +14,9 @@ Also, the app is responsive and compatible with various devices such as smartpho
 ## How to use
 1. Navigate to the static github page listed in the README.
 2. Enter in a movie name you would like to search for.
-3. Movie name, summary, tralier and a ferw main actors should popup in a modal.
+3. Movie name, summary, tralier and a few main actors should popup in a modal.
 
-note: When searching for a movie exact names must be used e.g. "finding nemo" will generate a movie while "nemo" will display an error modal.
+note: When searching for a movie exact names must be used e.g. "finding nemo" will generate a movie while "nemo" will display something completely different.
 
 
 ## Technologies used
